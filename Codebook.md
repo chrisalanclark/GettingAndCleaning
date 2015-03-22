@@ -19,7 +19,7 @@ All except the gravity component then had a Fourier Transform applied to obtain 
 
 Using the three axial components (X, Y, and Z) of these nine signals, a magnitude (Mag) was calculated for each measurement of each of the nine signals.
 For each of the four components (X, Y, Z, and Mag) of each of the nine signals, the mean and the standard deviation over the 128 measurements of each window was retained (many other calculations were done, however our dataset is only concerned with the mean and standard deviation).  
-Finally, the 72 resulting columns of data were normalized (over all observations, test and training) to provide features with a range from -1 to 1.  
+Finally, the 72 resulting columns of data were normalized (over all observations, test and training) to provide features with a range from -1 to 1.  Because of this normalization, there are no units for the values: each value simply reflects how close that observation was to the maximum (1) or minimum (-1) for that variable across all observations.
 Note that fBodyGyroJerk-[XYZ]-mean() and fBodyGyroJerk-[XYZ]-std() are missing without explanation from the provided feature set, so we in fact end up with 66 features.  
 The combined training and test datasets have a total of 10299 observations, each of which contains the above described calculations for one 2.56 second window (128 measurements).
 
@@ -27,7 +27,8 @@ The combined training and test datasets have a total of 10299 observations, each
 ## tidy_summary.txt
 The data file produced, tidy_summary.txt, groups by activity and subject id and provides the mean across observations (2.56 second windows) of the 66 features described above (so the mean across windows of the **normalized** mean and standard deviation of the signal within each window).  
 It also provides, for downstream calculations, the number of observations (2.56 second windows) in each group.  
-The variables were also renamed slightly, to simplify, and reordered, to keep everything related to a single signal together.
+The variables were also renamed slightly, to simplify, and reordered, to keep everything related to a single signal together.   
+There are no units for the variables because they are means of a normalized feature which itself has no units.  Thus, the closer the mean is to -1, the closer the average across those observations was to the minimum value across all observations, and the closer to 1, the closer it was to the maximum value.
 
 ###  Variable naming convention for means in tidy_summary.txt  
 The following naming convention was used for the 66 columns calculating a mean.

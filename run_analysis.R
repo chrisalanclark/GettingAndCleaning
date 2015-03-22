@@ -61,12 +61,13 @@ getData <-function (dtype="train", features, drop=TRUE) {
 df_all<-bind_rows(getData("train", features, drop=FALSE), 
                   getData("test", features, drop=FALSE))
 
-## replace the activity ids with their short description
-df_all$activity<-activities$activity[match(df_all$activity, activities$index)]
-
 ## select only the columns we want (subject, activity, and those based on mean 
 ## or standard deviation)
 df_all<-select(df_all, subject, activity, matches(".*(\\.mean\\.|\\.std\\.).*"))
+
+## replace the activity ids with their short description
+df_all$activity<-activities$activity[match(df_all$activity, activities$index)]
+
 
 ## get the column names, in order to rename them according to new naming 
 ## standards and get rid of '.'s (which are an artifact of using the old 
